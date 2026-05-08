@@ -157,7 +157,7 @@
   padding: 1em 1.2em;
   border: 1px solid var(--c-border);
   border-radius: 10px;
-  background: #0f1115;
+  background: var(--c-bg-soft);
   line-height: 1.55;
   max-height: 420px;
 }
@@ -254,7 +254,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 14px;
-  background: rgba(11, 12, 15, 0.85);
+  background: rgba(249, 250, 251, 0.92);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--c-border);
   font-size: 12px;
@@ -319,6 +319,23 @@
   .demo-frame, .demo-video { display: none !important; }
 }
 
+
+/* ── Light theme variable mapping ─────────────────────────────── */
+:root {
+  --background:    #ffffff;
+  --color-primary: #1a1c20;
+  --color-accent:  #d97706;   /* amber-600 — matches --c-accent family */
+  --color-subtle:  #6b7280;   /* matches --c-text-mute */
+
+  /* Override dark palette for light base */
+  --c-bg:        #ffffff;
+  --c-bg-soft:   #f3f4f6;
+  --c-surface:   #f9fafb;
+  --c-border:    #e5e7eb;
+  --c-text:      #1a1c20;
+  --c-text-dim:  #374151;
+  --c-text-mute: #9ca3af;
+}
 
 .reveal { background: var(--background); color: var(--color-primary); }
 .reveal h1, .reveal h2, .reveal h3 { color: var(--color-accent); }
