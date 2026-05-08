@@ -85,30 +85,24 @@
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2em;margin-top:0.8em;max-width:44em;">
       <div class="card" style="text-align:left;padding:1em 1.2em;">
         <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin:0 0 0.4em;letter-spacing:0.08em;">ACT 1</p>
-        <p style="font-size:1em;font-weight:600;margin:0 0 0.5em;">The Problem</p>
-        <p style="font-size:0.75em;color:rgba(255,255,255,0.6);margin:0;line-height:1.5;">Why agents break existing security models</p>
+        <p style="font-size:1em;font-weight:600;margin:0;">The Problem</p>
       </div>
       <div class="card" style="text-align:left;padding:1em 1.2em;">
         <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin:0 0 0.4em;letter-spacing:0.08em;">ACT 2</p>
-        <p style="font-size:1em;font-weight:600;margin:0 0 0.5em;">Colosseum</p>
-        <p style="font-size:0.75em;color:rgba(255,255,255,0.6);margin:0;line-height:1.5;">An operator control plane built for agents</p>
+        <p style="font-size:1em;font-weight:600;margin:0;">Colosseum</p>
       </div>
       <div class="card" style="text-align:left;padding:1em 1.2em;">
         <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin:0 0 0.4em;letter-spacing:0.08em;">ACT 3</p>
-        <p style="font-size:1em;font-weight:600;margin:0 0 0.5em;">So What</p>
-        <p style="font-size:0.75em;color:rgba(255,255,255,0.6);margin:0;line-height:1.5;">What changes when you deploy this way</p>
+        <p style="font-size:1em;font-weight:600;margin:0;">So What</p>
       </div>
     </div>
     <aside class="notes">
-      Three acts. First, make sure everyone agrees there is a real problem.
-      Second, show what a purpose-built control plane looks like.
-      Third, what actually changes for your team.
+      Three acts.
+      Act 1 — The Problem. Agents are non-deterministic code with credentials. Most teams are judging threats they have never produced. Existing security models were not built for this.
+      Act 2 — Colosseum. A purpose-built operator control plane: scoped identity per agent, tool allowlists, credential vaults, Docker sandboxes, policy and approval gates, output contracts, planning mode, and forensic replay.
+      Act 3 — So What. What actually changes when you deploy this way. Confident deployment, incident response rebuilt for agents, and platform leverage your whole security team can use.
     </aside>
   </section>
-
-
-
-
 
   <!-- Slide 2: The agent wave is here -->
   <section>
@@ -117,15 +111,15 @@
     <div class="grid-3" style="margin-top:1.4em;">
       <div class="card">
         <span class="risk">coding</span>
-        <p>Copilot · Cursor · Devin · Claude Code writing to your repos today.</p>
+        
       </div>
       <div class="card">
         <span class="risk">infra</span>
-        <p>Agentic runbooks touching Terraform, k8s, cloud consoles, secret stores.</p>
+        
       </div>
       <div class="card">
         <span class="risk">support</span>
-        <p>Customer-facing agents with tool access to billing, accounts, data.</p>
+        
       </div>
     </div>
     <p class="subtle" style="margin-top:1.4em;">
@@ -136,6 +130,9 @@
       This is a defender's room. Agents are already landing in their environments, usually without
       the security team being consulted. The choice is between governed deployment and shadow
       deployment — not between agents and no agents.
+    
+      Three cards: coding agents (Copilot, Cursor, Devin, Claude Code) writing to repos today. Infra agents touching Terraform, k8s, cloud consoles, secret stores. Support agents with tool access to billing, accounts, data.
+      The question isn't whether agents will be in your environment. It's whose agents, on whose terms.
     </aside>
   </section>
 
@@ -143,11 +140,6 @@
   <section>
     <span class="eyebrow">Act 1 · The problem</span>
     <h2>Agents are non-deterministic code with credentials</h2>
-    <div class="callout">
-      Every security control you've ever shipped assumed <strong>deterministic code</strong>.<br/>
-      Static review, CI gates, policy-as-code, audit trails — all assume the program is fixed
-      before it runs.
-    </div>
     <p style="margin-top:1.2em;">
       An agent decides <em>at runtime</em> which tool to call, with what arguments, in what order.
       It holds your tokens. It reads your docs. It can be talked into things.
@@ -162,15 +154,10 @@
     </aside>
   </section>
 
-
   <!-- Slide 4a: The calibration problem -->
   <section>
     <span class="eyebrow">Act 1 · The problem</span>
     <h2>You can&rsquo;t judge what you can&rsquo;t produce</h2>
-    <div class="callout">
-      &ldquo;When you lack the skill to produce excellence, you also lack the skill to judge it.&rdquo;<br/>
-      <span style="font-size:0.85em;color:#9ba3af;">&mdash; David Dunning, Cornell University</span>
-    </div>
     <p style="margin-top:1.2em;">
       The Dunning&ndash;Kruger effect isn&rsquo;t just about overconfident beginners.<br/>
       It&rsquo;s about a <strong>closed feedback loop</strong> &mdash; you can&rsquo;t see what you can&rsquo;t see.
@@ -178,11 +165,9 @@
     <div class="grid-2" style="margin-top:1.2em;">
       <div class="card">
         <span class="risk">what we think</span>
-        <p>&ldquo;I can review the logs. I can spot unusual behavior. I know my environment.&rdquo;</p>
       </div>
       <div class="card">
         <span class="risk">what&rsquo;s actually true</span>
-        <p>An agent can execute 10,000 tool calls in minutes. No human can evaluate that in real time &mdash; or after the fact.</p>
       </div>
     </div>
     <aside class="notes">
@@ -198,24 +183,18 @@
   <section>
     <span class="eyebrow">Act 1 · The problem</span>
     <h2>The calibration gap in agent security</h2>
-    <p>Calibration means your confidence matches your competence.<br/>For agents, the gap is structural &mdash; not a skills problem you can train away.</p>
+    
     <div class="grid-3" style="margin-top:1.2em;">
       <div class="card">
         <span class="risk">speed</span>
-        <p>Agents act faster than humans can observe. By the time you look, the damage is done.</p>
+        
       </div>
       <div class="card">
         <span class="risk">opacity</span>
-        <p>Every decision happens inside a model call. The reasoning isn&rsquo;t in the logs &mdash; only the outcome is.</p>
       </div>
       <div class="card">
         <span class="risk">novelty</span>
-        <p>Your pattern library was built on deterministic systems. Agents behave differently in ways your experience doesn&rsquo;t cover.</p>
       </div>
-    </div>
-    <div class="callout" style="margin-top:1.4em;">
-      The answer isn&rsquo;t better human judgment.<br/>
-      It&rsquo;s <strong>infrastructure that closes the loop before the agent acts</strong> &mdash; not after.
     </div>
     <aside class="notes">
       Bridge to Colosseum. You can't fix a calibration gap by trying harder or paying more
@@ -246,19 +225,15 @@
     <div class="grid-2">
       <div class="card">
         <span class="risk">option A</span>
-        <p><strong>Trust the SDK.</strong> Pass your keys to the agent framework and hope the prompt is strong enough.</p>
       </div>
       <div class="card">
         <span class="risk">option B</span>
-        <p><strong>Mocked sandboxes.</strong> Great demos, unshippable in production — and the mocks hide the risk.</p>
       </div>
       <div class="card">
         <span class="risk">option C</span>
-        <p><strong>DIY glue.</strong> Every team re-implements approvals, audit, secrets — badly and differently.</p>
       </div>
       <div class="card">
         <span class="risk">option D</span>
-        <p><strong>"We'll deal with it later."</strong> The agent is already in prod; the control plane is a Slack channel.</p>
       </div>
     </div>
     <aside class="notes">
@@ -271,27 +246,18 @@
   <section>
     <span class="eyebrow">Act 1 · The problem</span>
     <h2>Reactive security at 2× speed</h2>
-    <p>
-      The industry's answer to "attackers have AI" has been — almost reflexively — "defenders need AI too."
-      An agentic SOC copilot. An LLM triaging your alert queue. A chatbot reading your SIEM at 3am.
-    </p>
-    <div class="callout">
-      A bot that closes tickets 30% faster doesn't <em>prevent</em> an intrusion.<br/>
-      It catches it slightly sooner — on a system that was already failing.
-    </div>
+
     <div class="grid-2" style="margin-top:1.2em;">
       <div class="card">
         <span class="risk">proactive · architectural</span>
-        <p>A network that survives a zero-day without anyone looking at it. Segmentation, least privilege, hardening by design.</p>
+        
       </div>
       <div class="card">
         <span class="risk">reactive · operational</span>
-        <p>An AI that looks at alerts faster. A model that summarizes incidents. Band-aids on a workflow that was already losing.</p>
+        
       </div>
     </div>
-    <p class="subtle" style="margin-top:1.2em;">
-      Taking a response pattern that already doesn't work and sprinkling AI on top is not a defense. It's the same loss — accelerated.
-    </p>
+    
     <aside class="notes">
       This is the heart of the talk, and the bridge from "agents are a problem" to "this is the shape
       the answer has to take." The reflex when attackers get faster is to make defenders faster, but
@@ -309,10 +275,6 @@
     <p class="subtle" style="margin-top:1.2em;max-width:36em;margin-left:auto;margin-right:auto;">
       Controls that hold <strong>before the run</strong> — not detectors that fire <em>after the damage</em>.
     </p>
-    <div class="callout" style="margin-top:1.6em;text-align:left;max-width:38em;margin-left:auto;margin-right:auto;">
-      Agent deployment is a <strong>security</strong> problem — not an ML problem.<br/>
-      And the answer is <strong>proactive architecture</strong>, not reactive automation.
-    </div>
     <p class="subtle" style="margin-top:1.4em;max-width:32em;margin-left:auto;margin-right:auto;">
       Better evals won't save you from an overreaching tool call.<br/>
       A stricter prompt won't recover a deleted bucket.<br/>
@@ -332,14 +294,14 @@
   <section>
     <span class="eyebrow">Act 2 · The thesis</span>
     <h2>Colosseum — an agent control plane</h2>
-    <p>Open source. Single Go binary. SQLite-backed. Embedded operator UI.</p>
+    
     <div class="grid-3" style="margin-top:1.2em;">
-      <div class="card"><span class="risk">identity</span><p>Agent profiles with bound models, configs, credentials.</p></div>
-      <div class="card"><span class="risk">least privilege</span><p>Per-agent tool allowlists and scoped credential vaults.</p></div>
-      <div class="card"><span class="risk">audit</span><p>Every run, step, tool call, event, and artifact persisted.</p></div>
-      <div class="card"><span class="risk">review</span><p>Policy gates, human approvals, output contracts.</p></div>
-      <div class="card"><span class="risk">replay</span><p>Reproduce any past run. Bundle it for forensics.</p></div>
-      <div class="card"><span class="risk">one binary</span><p>No cluster, no queue broker, no vendor lock-in.</p></div>
+      <div class="card"><span class="risk">identity</span></div>
+      <div class="card"><span class="risk">least privilege</span></div>
+      <div class="card"><span class="risk">audit</span></div>
+      <div class="card"><span class="risk">review</span></div>
+      <div class="card"><span class="risk">replay</span></div>
+      <div class="card"><span class="risk">one binary</span></div>
     </div>
     <aside class="notes">
       The shape of the product: it's the control plane, not the model. Bring your own provider
@@ -355,10 +317,6 @@
       Let the model do what only it can do — reason, summarize, suggest.<br/>
       Keep enforcement, gating, and audit in code you can read.
     </p>
-    <div class="callout" style="margin-top:1.8em;text-align:left;max-width:34em;margin-left:auto;margin-right:auto;">
-      If a property has to hold <strong>every time</strong> — compliance, cost, blast radius —<br/>
-      it doesn't belong in a prompt. And it doesn't belong in a detector either.
-    </div>
     <p class="subtle" style="margin-top:1.4em;max-width:36em;margin-left:auto;margin-right:auto;">
       Every control in Colosseum is <strong>proactive</strong>: defined, versioned, and enforced
       <em>before</em> the agent takes a step — not inferred from its exhaust afterwards.
@@ -395,7 +353,7 @@
   <section>
     <span class="eyebrow">Act 3 · Primitives · 1 of 9</span>
     <h2>Agent profiles — scoped identity</h2>
-    <p>An agent is a <strong>named identity</strong>: model + system prompt + bound provider config + tool allowlist + credential binding.</p>
+    
     <pre><code class="language-yaml">name: support-triage-bot
 model: claude-sonnet-4-6
 provider_config: anthropic-prod
@@ -420,9 +378,9 @@ output_contract: schemas/triage-v1.json</code></pre>
     <h2>Tool allowlist — least privilege, per agent</h2>
     <div class="grid-2">
       <div>
-        <p>Tools are <strong>named, versioned, parameter-typed</strong> functions. The agent sees only what its profile allows.</p>
+        
         <ul>
-          <li><code>shell.exec</code> — with per-agent cwd, env, timeout</li>
+          <li><code>shell.exec</code></li>
           <li><code>files.read</code> · <code>files.write</code></li>
           <li><code>web.fetch</code> · <code>browser.navigate</code></li>
           <li><code>http.request</code> — with URL allowlist</li>
@@ -444,7 +402,7 @@ output_contract: schemas/triage-v1.json</code></pre>
   <section>
     <span class="eyebrow">Act 3 · Primitives · 3 of 9</span>
     <h2>Credential vaults — scoped secrets, bound per agent</h2>
-    <p>Named vaults hold secrets. Agents <strong>reference</strong> vaults; they never see raw values.</p>
+    
     <pre><code class="language-yaml">vaults:
   - name: zendesk-readonly
     entries:
@@ -470,11 +428,11 @@ agents:
     <h2>Environments — Docker-first sandboxes</h2>
     <div class="grid-2">
       <div>
-        <p>Every run can be pinned to an <strong>environment spec</strong>: base image, volume mounts, network policy, resource limits.</p>
+        
         <ul>
-          <li>Default shell runs inside a named image</li>
-          <li>Filesystem writes bounded to the session workspace</li>
-          <li>Egress controlled by the host network policy</li>
+          
+          
+          
           <li>Session lifetime bounded — no zombie containers</li>
         </ul>
       </div>
@@ -494,7 +452,7 @@ agents:
   <section>
     <span class="eyebrow">Act 3 · Primitives · 5 of 9</span>
     <h2>Policy &amp; approvals — the human gate</h2>
-    <p>Deterministic predicates run <strong>before</strong> risky tool calls. They can allow, deny, or request human approval.</p>
+    
     <pre><code class="language-go">// Example: require approval for any shell.exec that writes outside the sandbox
 policy.Rule{
     Tool:  "shell.exec",
@@ -514,11 +472,11 @@ policy.Rule{
     <h2>Output contracts — "looks good" isn't good enough</h2>
     <div class="grid-2">
       <div>
-        <p>Agents can be required to emit output matching a <strong>schema</strong> or regex before the run is accepted.</p>
+        
         <ul>
-          <li>JSON Schema validation</li>
-          <li>Regex / format constraints</li>
-          <li>Retries with feedback on validation failure</li>
+          
+          
+          
           <li>Contract violations are a terminal error, not a warning</li>
         </ul>
       </div>
@@ -539,9 +497,9 @@ policy.Rule{
     <h2>Planning mode — force a reviewable plan</h2>
     <p>Three modes, per agent:</p>
     <div class="grid-3">
-      <div class="card"><span class="risk">off</span><p>Straight to execution. Fine for bounded, low-risk agents.</p></div>
-      <div class="card"><span class="risk">suggest</span><p>Agent proposes a plan; may execute without approval.</p></div>
-      <div class="card"><span class="risk">required</span><p>Agent proposes a plan; <strong>human approves before any tool call</strong>.</p></div>
+      <div class="card"><span class="risk">off</span></div>
+      <div class="card"><span class="risk">suggest</span></div>
+      <div class="card"><span class="risk">required</span></div>
     </div>
     <p class="subtle" style="margin-top:1.2em;">The plan is stored with the run. You can replay the run and show that the plan was followed.</p>
     <aside class="notes">
@@ -556,14 +514,14 @@ policy.Rule{
     <h2>Telemetry — the run <em>is</em> the evidence</h2>
     <div class="grid-2">
       <div>
-        <p>Every run produces a structured graph:</p>
+        
         <ul>
-          <li><strong>Runs</strong> — the outermost unit, one per invocation</li>
-          <li><strong>Steps</strong> — planner / tool / observation cycles</li>
-          <li><strong>Tool calls</strong> — args, results, errors, latency</li>
-          <li><strong>Events</strong> — everything the runtime observed</li>
+          <li><strong>Runs</strong></li>
+          <li><strong>Steps</strong></li>
+          <li><strong>Tool calls</strong></li>
+          <li><strong>Events</strong></li>
           <li><strong>Spans</strong> — OpenTelemetry-compatible traces</li>
-          <li><strong>Artifacts</strong> — files, screenshots, patches</li>
+          <li><strong>Artifacts</strong></li>
         </ul>
       </div>
       <div class="card">
@@ -581,7 +539,7 @@ policy.Rule{
   <section>
     <span class="eyebrow">Act 3 · Primitives · 9 of 9</span>
     <h2>Replay &amp; export — reproducible forensics</h2>
-    <p>Any past run can be replayed with the same inputs, tools mocked from the recorded results — or re-executed live with changed policy.</p>
+    
     <pre><code class="language-bash"># Export a run as a self-contained bundle
 colosseum export run-0f8c...  &gt; incident-2026-04-17.tar.gz
 
@@ -645,12 +603,8 @@ colosseum replay run-0f8c... --override-agent hardened-triage
   <section>
     <span class="eyebrow">Act 5 · Why this matters</span>
     <h2>Confident deployment</h2>
-    <p>Moving an agent from lab to prod today requires either blind faith or a bespoke harness. Colosseum is the harness.</p>
-    <div class="callout">
-      Evals tell you how often the agent is <em>right</em>.<br/>
-      Runtime controls tell you what happens when it's <em>wrong</em>.
-    </div>
-    <p class="subtle" style="margin-top:1em;">Both matter. Production requires the second one.</p>
+    
+    
     <aside class="notes">
       The eval industry is booming. Good. But evals are a pre-deployment discipline. Once the
       agent is live, what keeps you safe is the runtime: allowlists, approvals, contracts, audit.
@@ -661,11 +615,11 @@ colosseum replay run-0f8c... --override-agent hardened-triage
   <section>
     <span class="eyebrow">Act 5 · Why this matters</span>
     <h2>Incident response, rebuilt for agents</h2>
-    <p>When an agent misbehaves, you need answers in minutes, not days.</p>
+    
     <ul>
-      <li><strong>What did it do?</strong> — full step + tool-call graph, timestamped</li>
-      <li><strong>Who authorized it?</strong> — plan approval + tool approval log</li>
-      <li><strong>Can it happen again?</strong> — replay with a tightened policy to prove the fix</li>
+      <li><strong>What did it do?</strong></li>
+      <li><strong>Who authorized it?</strong></li>
+      <li><strong>Can it happen again?</strong></li>
       <li><strong>Who else is affected?</strong> — query runs by agent, by tool, by credential vault</li>
     </ul>
     <p class="subtle" style="margin-top:1em;">The execution graph <em>is</em> the audit trail.</p>
@@ -681,12 +635,12 @@ colosseum replay run-0f8c... --override-agent hardened-triage
     <h2>Platform leverage</h2>
     <div class="grid-2">
       <div>
-        <p>One shared control plane beats N bespoke agent harnesses.</p>
+        
         <ul>
-          <li>Security defines the <strong>policy library</strong> once</li>
-          <li>Platform defines the <strong>tool catalog</strong> once</li>
-          <li>Product teams author <strong>agent profiles</strong> on top</li>
-          <li>Compliance gets the <strong>audit trail</strong> for free</li>
+          <li>Security defines the <strong>policy library</strong></li>
+          <li>Platform defines the <strong>tool catalog</strong></li>
+          <li>Product teams author <strong>agent profiles</strong></li>
+          <li>Compliance gets the <strong>audit trail</strong></li>
         </ul>
       </div>
       <div>
@@ -771,27 +725,21 @@ open http://localhost:8001</code></pre>
     <div class="grid-3">
       <div class="card">
         <span class="risk">scale</span>
-        <p>Distributed scheduler — runs spread across workers, shared Postgres-backed store.</p>
       </div>
       <div class="card">
         <span class="risk">multi-tenant</span>
-        <p>Per-team namespaces, per-role RBAC, isolation of secrets + audit trails.</p>
       </div>
       <div class="card">
         <span class="risk">policy</span>
-        <p>Richer policy expressions, OPA interop, prompt-injection classifiers as first-class gates.</p>
       </div>
       <div class="card">
         <span class="risk">sandboxes</span>
-        <p>MicroVM environments, per-agent egress allowlists, deeper network policy.</p>
       </div>
       <div class="card">
         <span class="risk">integrations</span>
-        <p>SIEM export, PagerDuty / Slack approval bridges, ticketing hooks.</p>
       </div>
       <div class="card">
         <span class="risk">tools</span>
-        <p>Expanded catalog — Git, cloud consoles, ticketing, observability read-paths.</p>
       </div>
     </div>
     <aside class="notes">
