@@ -318,3 +318,7 @@
   .reveal pre code { max-height: none; }
   .demo-frame, .demo-video { display: none !important; }
 }
+
+
+.reveal { background: var(--background); color: var(--color-primary); }
+.reveal h1, .reveal h2, .reveal h3 { color: var(--color-accent); }
