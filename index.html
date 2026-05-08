@@ -36,6 +36,10 @@
       </p>
       <p class="muted" style="margin-top:2em;">Secure360 · Minneapolis · 2026</p>
     </div>
+<div style="position:absolute;bottom:1.2em;right:1.2em;text-align:center;z-index:10;">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEUAAAD///7S3q9LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABiElEQVRoge2ZO46EMBBEjSYgnCNwFI4GR/NRfARCgtF4++MfEutoF3dQJTEarEdUcnW37RwE9fWKWZ7e1tPx3335uC2vn8DsYLuYNkU/R8ZYW6DnUDdXYJawNxl3TOIpKYaMTbT+BWYTm2W3xcib7wPMNkZ++rTkutYD+wdMNpSaxU+gMha6aQlsGFYaDK1ZjHX7EGDDsIt4VWwmrCNgg7DkqUSj+ioIh+hXEtMDM4ORqLR5Wltj3YBtiAJ7BGve2wEqe3gCM4SRn424uXBLTJ6WL4EZwF41ArlmNQMULUlXD8wUltyjeuWynzelDZgBbJfSps2Fm3XGCk3fcQIzhNHvepSj9DInvzUxV2CPYTFqBLLqpLuXcgbMAtYoHU0QpkPUVBMSmAnsco4kmbek60KKwEuDAcwAtotpl+mXu0H1dAJmC6s3UNJgNLqEKrCHMEWTYWmuujELmAVMWj+uV4t2gtv93S6wcZhY2HjKZSx1hMevt4rAhmBZvknK4Hq3isAGYRD0B/oB0X+21QVvlEgAAAAASUVORK5CYII=" style="width:80px;height:80px;opacity:0.85;" alt="s360-26.0x509.com" />
+        <p style="font-size:0.38em;color:rgba(255,255,255,0.45);margin:0.3em 0 0;">s360-26.0x509.com</p>
+      </div>
     <aside class="notes">
       Opening. Introduce self, thank Secure360 for having me. Frame the talk: not an ML talk, a
       security talk about the infrastructure required to deploy agents safely. Promise a live demo
@@ -62,6 +66,10 @@
         <p style="margin-top:1.2em;font-size:0.8em;color:rgba(255,255,255,0.4);">github.com/abhid &nbsp;&middot;&nbsp; secure360.org 2026</p>
       </div>
     </div>
+<div style="position:absolute;bottom:1.2em;right:1.2em;text-align:center;z-index:10;">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEUAAAD///7S3q9LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABiElEQVRoge2ZO46EMBBEjSYgnCNwFI4GR/NRfARCgtF4++MfEutoF3dQJTEarEdUcnW37RwE9fWKWZ7e1tPx3335uC2vn8DsYLuYNkU/R8ZYW6DnUDdXYJawNxl3TOIpKYaMTbT+BWYTm2W3xcib7wPMNkZ++rTkutYD+wdMNpSaxU+gMha6aQlsGFYaDK1ZjHX7EGDDsIt4VWwmrCNgg7DkqUSj+ioIh+hXEtMDM4ORqLR5Wltj3YBtiAJ7BGve2wEqe3gCM4SRn424uXBLTJ6WL4EZwF41ArlmNQMULUlXD8wUltyjeuWynzelDZgBbJfSps2Fm3XGCk3fcQIzhNHvepSj9DInvzUxV2CPYTFqBLLqpLuXcgbMAtYoHU0QpkPUVBMSmAnsco4kmbek60KKwEuDAcwAtotpl+mXu0H1dAJmC6s3UNJgNLqEKrCHMEWTYWmuujELmAVMWj+uV4t2gtv93S6wcZhY2HjKZSx1hMevt4rAhmBZvknK4Hq3isAGYRD0B/oB0X+21QVvlEgAAAAASUVORK5CYII=" style="width:80px;height:80px;opacity:0.85;" alt="s360-26.0x509.com" />
+        <p style="font-size:0.38em;color:rgba(255,255,255,0.45);margin:0.3em 0 0;">s360-26.0x509.com</p>
+      </div>
     <aside class="notes">
       Quick bio. Director of Technology at Essentia Health, a regional health system in Duluth.
       I build the platforms that let teams run AI safely in regulated environments.
@@ -69,6 +77,36 @@
       Everything I show today is open source.
     </aside>
   </section>
+
+  <!-- Slide 3: Agenda -->
+  <section class="centered">
+    <span class="eyebrow">Today</span>
+    <h2 style="margin-bottom:0.6em;">What we're covering</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2em;margin-top:0.8em;max-width:44em;">
+      <div class="card" style="text-align:left;padding:1em 1.2em;">
+        <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin:0 0 0.4em;letter-spacing:0.08em;">ACT 1</p>
+        <p style="font-size:1em;font-weight:600;margin:0 0 0.5em;">The Problem</p>
+        <p style="font-size:0.75em;color:rgba(255,255,255,0.6);margin:0;line-height:1.5;">Why agents break existing security models</p>
+      </div>
+      <div class="card" style="text-align:left;padding:1em 1.2em;">
+        <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin:0 0 0.4em;letter-spacing:0.08em;">ACT 2</p>
+        <p style="font-size:1em;font-weight:600;margin:0 0 0.5em;">Colosseum</p>
+        <p style="font-size:0.75em;color:rgba(255,255,255,0.6);margin:0;line-height:1.5;">An operator control plane built for agents</p>
+      </div>
+      <div class="card" style="text-align:left;padding:1em 1.2em;">
+        <p style="font-size:0.7em;color:rgba(255,255,255,0.4);margin:0 0 0.4em;letter-spacing:0.08em;">ACT 3</p>
+        <p style="font-size:1em;font-weight:600;margin:0 0 0.5em;">So What</p>
+        <p style="font-size:0.75em;color:rgba(255,255,255,0.6);margin:0;line-height:1.5;">What changes when you deploy this way</p>
+      </div>
+    </div>
+    <aside class="notes">
+      Three acts. First, make sure everyone agrees there is a real problem.
+      Second, show what a purpose-built control plane looks like.
+      Third, what actually changes for your team.
+    </aside>
+  </section>
+
+
 
 
 
