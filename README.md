@@ -1,104 +1,88 @@
-# Colosseum — Secure360 presentation
+# Colosseum — Secure360 2026
 
-A static [reveal.js](https://revealjs.com/) deck for the Secure360 2026 Colosseum talk in Minneapolis. Self-contained HTML; no build step.
+**Talk:** *Colosseum: An Agent Control Plane for the Post-LLM Era*
+**Conference:** Secure360 2026 · May 13–14, 2026 · Mystic Lake Event Center, Prior Lake, MN
+**Speaker:** Abhi Devireddy, Director of Technology Services · Essentia Health
 
-## Run locally
+---
 
-```bash
-cd presentation
-python3 -m http.server 8080
-# open http://localhost:8080/
-```
+## 🎯 Talk Abstract
 
-In a second terminal, start the Colosseum server that the demo slide will iframe:
+The agent wave is already here — but most security teams are judging threats they have never produced and defending systems they do not fully understand. This talk introduces **Colosseum**, an open-source AI agent control plane built around the principle that *you cannot secure what you cannot observe*.
 
-```bash
-./bin/colosseum server --port 8001
-```
+We walk through:
+- Why agents are fundamentally different from traditional automation
+- The three failure modes that keep recurring in real-world deployments
+- How an operator control plane (identity, least-privilege tooling, policy gates, sandboxed environments, and forensic replay) closes the calibration gap
+- A live demo of Colosseum in action
 
-Open the deck in a browser. The demo slide (slide 19) will auto-ping `http://localhost:8001/healthz` and show a green dot when it's reachable.
+---
 
-## Configure the demo target
+## 📊 Slide Deck
 
-The demo iframe reads a `?demo=<url>` query string:
+26 slides · Reveal.js · [View live](https://s360-26.apps.0x509.com)
 
-```
-http://localhost:8080/                            # defaults to http://localhost:8001
-http://localhost:8080/?demo=http://10.0.0.5:8001  # remote host on the conference LAN
-http://localhost:8080/?demo=https://colosseum.example.com   # deployed demo
-http://localhost:8080/?demo=video                 # swap the iframe for assets/demo-fallback.mp4
-```
+### Outline
 
-If you want a prerecorded fallback, drop an `.mp4` at `assets/demo-fallback.mp4` and use `?demo=video`.
+| Act | Slides | Theme |
+|-----|--------|-------|
+| **Act 1 — The Problem** | 1–8 | The agent wave, why it breaks existing security models, and where defenders are falling behind |
+| **Act 2 — Colosseum** | 9–18 | Architecture, agent profiles, tool allowlists, credential vaults, Docker sandboxes, policy/approvals, output contracts, planning mode, replay and forensics |
+| **Act 3 — So What** | 19–26 | Confident deployment, incident response rebuilt for agents, platform leverage, open-source model, what is next |
 
-## Speaker view
-
-Press `S` anywhere in the deck — reveal opens a second window with speaker notes, next-slide preview, and a timer. Every slide has notes in `<aside class="notes">`; the demo slide's notes are the full demo script.
-
-## PDF export
-
-Append `?print-pdf` and use Chrome's **Print → Save as PDF**:
-
-```
-http://localhost:8080/?print-pdf
-```
-
-Fit-to-page, background graphics enabled. The demo iframe is hidden in `@media print` so the PDF doesn't try to render a live app.
-
-## Deploy
-
-Anything that serves static files works:
-
-- **GitHub Pages** — push the `presentation/` folder to a branch, enable Pages. The `.nojekyll` file keeps Jekyll from eating the assets.
-- **Netlify / Vercel / Cloudflare Pages** — drop the folder in as a static site, no build command.
-- **S3 + CloudFront** — sync the folder to a bucket, serve behind CloudFront.
-
-### Mixed content (important)
-
-Browsers block an **HTTPS** page from iframing **HTTP** content. At the conference, the two supported setups are:
-
-1. **Serve the deck over HTTP too** (e.g., GitHub Pages via a custom domain with HTTP kept on, or just host the deck on the presenter laptop). Simplest for a local demo.
-2. **Put the demo Colosseum on HTTPS**: `ngrok http 8001`, a VPS with Caddy, or a self-signed cert trusted on the presenter laptop.
-
-Use `?demo=video` as the bulletproof fallback — the deck works on HTTPS with no live target.
-
-### X-Frame-Options
-
-Colosseum intentionally sets no `X-Frame-Options` or restrictive `Content-Security-Policy: frame-ancestors` header — iframing is explicitly supported for this presentation and for embedded-operator scenarios. See `docs/07-security-reliability.md` for the reasoning.
-
-## Pre-talk checklist
-
-- [ ] `./bin/colosseum server --port 8001` running on the presenter laptop with the demo DB preset
-- [ ] Deck served via `python3 -m http.server 8080` (or deployed ahead of time)
-- [ ] Demo slide shows a green status dot
-- [ ] Speaker-notes window opened (`S`) and positioned on the second display
-- [ ] `assets/demo-fallback.mp4` recorded and playable via `?demo=video` as backup
-- [ ] Wifi/backup-hotspot tested
-- [ ] Screen zoom / font size tested from the back of the room
-
-## Layout
-
-```
-presentation/
-├── index.html              # reveal shell + all 26 slides inline
-├── css/theme.css           # Colosseum palette overrides on reveal's black base
-├── js/config.js            # reveal init + ?demo=<url> handling + healthz ping
-├── assets/
-│   ├── logo.svg            # presentation logo matching ui/src/assets/colosseum-logo.svg
-│   ├── architecture.svg    # simplified architecture diagram
-│   └── threat-model.svg    # three-failure-mode illustration
-├── .nojekyll               # GitHub Pages: skip Jekyll
-└── README.md               # this file
-```
-
-## Keyboard shortcuts
+### Keyboard Navigation
 
 | Key | Action |
 |-----|--------|
-| `N` / `→` | Next slide |
-| `P` / `←` | Previous slide |
-| `S` | Speaker notes window |
+| `Space` or `→` | Next slide |
+| `←` | Previous slide |
 | `F` | Fullscreen |
-| `Esc` / `O` | Slide overview |
-| `.` | Black out screen |
-| `?` | Full shortcut list |
+| `S` | Speaker notes |
+| `O` | Slide overview |
+| `Esc` | Exit fullscreen/overview |
+
+---
+
+## 🗂 Repo Structure
+
+```
+s360-2026/
+├── index.html          # Main presentation (26 slides, self-contained)
+├── css/
+│   └── theme.css       # Colosseum brand overrides on top of Reveal.js black theme
+├── js/
+│   └── config.js       # Reveal.js init + plugin config
+├── assets/
+│   ├── architecture.svg   # System architecture diagram
+│   ├── threat-model.svg   # Agent threat model diagram
+│   └── logo.png / logo.svg
+└── README.md
+```
+
+Reveal.js is loaded from CDN — no npm install needed to view locally.
+
+---
+
+## 🚀 Running Locally
+
+```bash
+git clone https://github.com/abhid/s360-2026.git
+cd s360-2026
+python3 -m http.server 8080
+```
+
+Open http://localhost:8080
+
+---
+
+## 🔗 Links
+
+- **Live slides:** https://s360-26.apps.0x509.com
+- **Colosseum source:** https://github.com/abhid/colosseum-go
+- **Secure360:** https://secure360.org
+
+---
+
+## 📄 License
+
+Slide content © 2026 Abhi Devireddy. Reveal.js is MIT licensed.
