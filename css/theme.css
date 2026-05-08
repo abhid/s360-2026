@@ -2,17 +2,24 @@
    gray palette + Inter/Monaspace stack used by the operator UI. */
 
 :root {
-  --c-bg: #0b0c0f;
-  --c-bg-soft: #13151a;
-  --c-surface: #1b1e25;
-  --c-border: #2a2f3a;
-  --c-text: #e6e8eb;
-  --c-text-dim: #9aa3b2;
-  --c-text-mute: #6b7280;
-  --c-accent: #f59e0b;
-  --c-danger: #ef4444;
-  --c-success: #10b981;
-  --c-info: #38bdf8;
+  /* Light palette */
+  --c-bg:        #ffffff;
+  --c-bg-soft:   #f3f4f6;
+  --c-surface:   #f9fafb;
+  --c-border:    #e5e7eb;
+  --c-text:      #1a1c20;
+  --c-text-dim:  #374151;
+  --c-text-mute: #9ca3af;
+  --c-accent:    #d97706;
+  --c-danger:    #ef4444;
+  --c-success:   #10b981;
+  --c-info:      #0284c7;
+
+  /* Light theme semantic aliases */
+  --background:    #ffffff;
+  --color-primary: #1a1c20;
+  --color-accent:  #d97706;
+  --color-subtle:  #6b7280;
 
   --font-sans: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Monaspace Neon', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -320,22 +327,3 @@
 }
 
 
-/* ── Light theme variable mapping ─────────────────────────────── */
-:root {
-  --background:    #ffffff;
-  --color-primary: #1a1c20;
-  --color-accent:  #d97706;   /* amber-600 — matches --c-accent family */
-  --color-subtle:  #6b7280;   /* matches --c-text-mute */
-
-  /* Override dark palette for light base */
-  --c-bg:        #ffffff;
-  --c-bg-soft:   #f3f4f6;
-  --c-surface:   #f9fafb;
-  --c-border:    #e5e7eb;
-  --c-text:      #1a1c20;
-  --c-text-dim:  #374151;
-  --c-text-mute: #9ca3af;
-}
-
-.reveal { background: var(--background); color: var(--color-primary); }
-.reveal h1, .reveal h2, .reveal h3 { color: var(--color-accent); }
