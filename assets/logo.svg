@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Colosseum logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Colosseum icon">
   <rect width="64" height="64" rx="14" fill="#111827"/>
-  <path fill="#f9fafb" d="M16 24c0-5.5 4.5-10 10-10h12c5.5 0 10 4.5 10 10v4h-6v-4c0-2.2-1.8-4-4-4H26c-2.2 0-4 1.8-4 4v16c0 2.2 1.8 4 4 4h12c2.2 0 4-1.8 4-4v-4h6v4c0 5.5-4.5 10-10 10H26c-5.5 0-10-4.5-10-10V24Z"/>
-  <path fill="#60a5fa" d="M28 29h20v6H28z"/>
+  <path d="M14 48h36" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
+  <path d="M18 42V28c0-7.7 6.3-14 14-14s14 6.3 14 14v14" fill="none" stroke="#f9fafb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24 42V28a8 8 0 0 1 16 0v14" fill="none" stroke="#f9fafb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 30h28M18 38h28" fill="none" stroke="#f9fafb" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 14v28" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round"/>
 </svg>

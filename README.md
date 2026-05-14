@@ -1,88 +1,81 @@
-# Colosseum — Secure360 2026
+# Secure360 presentation
 
-**Talk:** *Colosseum: An Agent Control Plane for the Post-LLM Era*
-**Conference:** Secure360 2026 · May 13–14, 2026 · Mystic Lake Event Center, Prior Lake, MN
-**Speaker:** Abhi Devireddy, Director of Technology Services · Essentia Health
+A static [reveal.js](https://revealjs.com/) deck for a vendor-neutral Secure360 talk on governing intelligent agents. The main talk is 18 primary slides for a 45-minute presentation, followed by appendix slides for Q&A, references, demo fallback, implementation options, and attendee takeaway material.
 
----
+## Run locally
 
-## 🎯 Talk Abstract
-
-The agent wave is already here — but most security teams are judging threats they have never produced and defending systems they do not fully understand. This talk introduces **Colosseum**, an open-source AI agent control plane built around the principle that *you cannot secure what you cannot observe*.
-
-We walk through:
-- Why agents are fundamentally different from traditional automation
-- The three failure modes that keep recurring in real-world deployments
-- How an operator control plane (identity, least-privilege tooling, policy gates, sandboxed environments, and forensic replay) closes the calibration gap
-- A live demo of Colosseum in action
-
----
-
-## 📊 Slide Deck
-
-26 slides · Reveal.js · [View live](https://s360-26.apps.0x509.com)
-
-### Outline
-
-| Act | Slides | Theme |
-|-----|--------|-------|
-| **Act 1 — The Problem** | 1–8 | The agent wave, why it breaks existing security models, and where defenders are falling behind |
-| **Act 2 — Colosseum** | 9–18 | Architecture, agent profiles, tool allowlists, credential vaults, Docker sandboxes, policy/approvals, output contracts, planning mode, replay and forensics |
-| **Act 3 — So What** | 19–26 | Confident deployment, incident response rebuilt for agents, platform leverage, open-source model, what is next |
-
-### Keyboard Navigation
-
-| Key | Action |
-|-----|--------|
-| `Space` or `→` | Next slide |
-| `←` | Previous slide |
-| `F` | Fullscreen |
-| `S` | Speaker notes |
-| `O` | Slide overview |
-| `Esc` | Exit fullscreen/overview |
-
----
-
-## 🗂 Repo Structure
-
+```bash
+cd presentation
+python3 -m http.server 8080
+# open http://localhost:8080/
 ```
-s360-2026/
-├── index.html          # Main presentation (26 slides, self-contained)
-├── css/
-│   └── theme.css       # Colosseum brand overrides on top of Reveal.js black theme
-├── js/
-│   └── config.js       # Reveal.js init + plugin config
+
+## Speaker view
+
+Press `S` anywhere in the deck. Reveal opens a second window with speaker notes, next-slide preview, and a timer. The main slides include spoken notes with:
+
+- first sentence
+- final sentence
+- cue bullets
+- timing guidance
+- pauses and audience interaction
+- transitions
+- what to skip if behind
+- demo fallback guidance
+
+## PDF export
+
+Append `?print-pdf` and use Chrome's **Print -> Save as PDF**:
+
+```text
+http://localhost:8080/?print-pdf
+```
+
+Use fit-to-page with background graphics enabled.
+
+## Live demo prep
+
+The deck no longer embeds a localhost demo target. Keep the demo in a separate browser window so the audience deck stays clean and does not expose local URLs, tokens, or environment details.
+
+Pre-talk checklist:
+
+- [ ] Known-good demo run recorded.
+- [ ] Screenshots captured for agent profile, tool allowlist, scoped credentials, hostile ticket, approval/denial gate, run graph/evidence, and replay result.
+- [ ] Short fallback screen recording tested.
+- [ ] Local static demo dataset ready.
+- [ ] Clean reset command or clean demo environment ready.
+- [ ] Hosted model/API keys tested outside the audience deck.
+- [ ] Speaker-notes window opened and positioned on presenter display.
+- [ ] Screen zoom and font size tested from the back of the room.
+
+Fallback trigger: if the live demo has not reached the approval/denial moment within 5 minutes, switch to the captured run.
+
+Fallback line:
+
+> I'm going to switch to the captured run. Same scenario, same controls. The important part is not the randomness of the model response; it is where the runtime draws the boundary.
+
+## Layout
+
+```text
+presentation/
+├── index.html              # reveal shell + 18 main slides + appendix backup
+├── css/theme.css           # light Secure360/Colosseum visual theme
+├── js/config.js            # reveal init
 ├── assets/
-│   ├── architecture.svg   # System architecture diagram
-│   ├── threat-model.svg   # Agent threat model diagram
-│   └── logo.png / logo.svg
+│   ├── logo.svg
+│   ├── architecture.svg
+│   └── threat-model.svg
 └── README.md
 ```
 
-Reveal.js is loaded from CDN — no npm install needed to view locally.
+## Keyboard shortcuts
 
----
-
-## 🚀 Running Locally
-
-```bash
-git clone https://github.com/abhid/s360-2026.git
-cd s360-2026
-python3 -m http.server 8080
-```
-
-Open http://localhost:8080
-
----
-
-## 🔗 Links
-
-- **Live slides:** https://s360-26.apps.0x509.com
-- **Colosseum source:** https://github.com/abhid/colosseum-go
-- **Secure360:** https://secure360.org
-
----
-
-## 📄 License
-
-Slide content © 2026 Abhi Devireddy. Reveal.js is MIT licensed.
+| Key | Action |
+|-----|--------|
+| `N` / `->` | Next slide |
+| `P` / `<-` | Previous slide |
+| `S` | Speaker notes window |
+| `F` | Fullscreen |
+| `Esc` / `O` | Slide overview |
+| `.` | Black out screen |
+| `?` | Full shortcut list |
